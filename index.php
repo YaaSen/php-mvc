@@ -1,3 +1,4 @@
 <?php
 
-echo 'Index.php';
+# Load system core file
+require_once 'system/Core.php';
