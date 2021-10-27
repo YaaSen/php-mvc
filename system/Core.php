@@ -1,5 +1,10 @@
 <?php
 
+# Load routes config file
+require_once './application/config/routes.php';
+# Initialize router
+Router::run();
+
 # Autoload system classes
 spl_autoload_register(function($classes) {
     # Checks if class file does exists
@@ -15,7 +20,3 @@ spl_autoload_register(function($controllers) {
     }
 });
 
-# Load routes config file
-require_once './application/config/routes.php';
-# Initialize router
-Router::run();
