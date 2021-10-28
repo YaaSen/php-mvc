@@ -7,6 +7,7 @@ class Controller {
 
     }
 
+    # View method
     public function view($file_path, $data = array()) {
         # Checks if data is not empty, if true
         # conver array as individual variable
