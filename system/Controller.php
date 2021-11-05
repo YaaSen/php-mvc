@@ -9,17 +9,22 @@ class Controller {
 
     # View method
     public function view($file_path, $data = array()) {
-        # Checks if data is not empty, if true
-        # conver array as individual variable
+        # Checks if data is not empty,
+        # if true extract array data
         if (count($data) > 0) {
-            foreach ($data as $_key => $_value) {
-                $$_key = $_value;
-            }
+            extract($data);
         }
+
         # Checks if file does exists, if true, require file
         if (file_exists('./application/views/' . $file_path . '.php')) {
             require_once './application/views/' . $file_path . '.php';
         }
+    }
+
+    # Model method
+    public function model($model_name) {
+        # Create new instance for the model
+        return new $model_name();
     }
 
 }

@@ -4,7 +4,7 @@
 class Home extends Controller {
 
     # Page data
-    public $page_data;
+    public $data = array();
 
     # Constructor method
     public function __construct() {
@@ -14,7 +14,13 @@ class Home extends Controller {
 
     # Index method
     public function index() {
-        echo '<h3>This is the home page.</h3>';
+        # Page data
+        $this->data['page_title'] = 'Home';
+
+        # Page views
+        $this->view('templates/header', $this->data);
+        $this->view('index', $this->data);
+        $this->view('templates/footer');
     }
 
 }

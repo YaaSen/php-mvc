@@ -3,6 +3,9 @@
 # Page start load timme
 $start_load_time = microtime(TRUE);
 
+# -----------------------------------------------------
+# AUTOLOAD CLASSES
+# -----------------------------------------------------
 # Autoload system and controller classes 
 spl_autoload_register(function($classes) {
     # Check if system class file does exists
@@ -15,13 +18,37 @@ spl_autoload_register(function($classes) {
         # Include controller class file
         require_once 'application/controllers/' . $classes . '.php';
     }
-});
 
+    # Check if model class file does exists
+    if (file_exists('application/models/' . $classes . '.php')) {
+        # Include model class file
+        require_once 'application/models/' . $classes . '.php';
+    }
+});
+# -----------------------------------------------------
+
+# -----------------------------------------------------
+# DATABASE
+# -----------------------------------------------------
+# Initialize database sigleton class
+$database = Database::getInstance();
+# Get database connection
+$db = $database->getConnection();
+# -----------------------------------------------------
+
+# -----------------------------------------------------
+# ROUTER
+# -----------------------------------------------------
 # Include routes config
 require_once 'application/config/routes.php';
+# -----------------------------------------------------
 
+# -----------------------------------------------------
+# COMPOSER
+# -----------------------------------------------------
 # Composer autoload
 require_once 'vendor/autoload.php';
+# -----------------------------------------------------
 
 # Page end load time
 $end_load_time = microtime(TRUE);
